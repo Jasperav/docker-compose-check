@@ -1,9 +1,11 @@
 use std::{time, thread};
 use std::process::Command;
+use scylla::{Session, SessionBuilder};
 
-fn main() {
+#[tokio::main]
+async fn main() {
     // Sleep a little bit so Scylla can start up
-    let ten_millis = time::Duration::from_secs(60 * 10);
+    let ten_millis = time::Duration::from_secs(60 * 3);
 
     thread::sleep(ten_millis);
 
@@ -14,4 +16,13 @@ fn main() {
         .unwrap();
 
     println!("Result: {:#?}", result);
+
+    let uri = "127.0.0.1:9042";
+
+    let session = SessionBuilder::new().known_node(uri).build().await.unwrap();
+
+    session.query("
+        CREATE KEYSPACE ks
+        WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 2};
+    ", &[]).await.unwrap();
 }
