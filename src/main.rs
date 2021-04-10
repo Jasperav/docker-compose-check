@@ -15,7 +15,6 @@ async fn main() {
         .status()
         .unwrap();
 
-
     println!("Result: {:#?}", result);
 
     let output = Command::new("docker")
