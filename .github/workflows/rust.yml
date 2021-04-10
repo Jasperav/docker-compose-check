@@ -17,4 +17,5 @@ jobs:
         run: |
           cd ./server
           docker-compose up -d
+          ls
           cargo run
