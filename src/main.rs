@@ -23,7 +23,7 @@ async fn main() {
             "somescylla",
             "cqlsh",
             "-f",
-            "setup.cql",
+            "/server/setup.cql",
         ])
         .output()
         .unwrap();
