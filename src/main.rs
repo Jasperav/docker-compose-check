@@ -27,4 +27,6 @@ async fn main() {
         .args(&["exec", "somescylla", "nodetool", "status", "ks"])
         .status()
         .unwrap();
+
+    println!("Post result: {:#?}", result);
 }
