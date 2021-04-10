@@ -3,7 +3,7 @@ use std::process::Command;
 
 fn main() {
     // Sleep a little bit so Scylla can start up
-    let ten_millis = time::Duration::from_secs(60 * 5);
+    let ten_millis = time::Duration::from_secs(60 * 10);
 
     thread::sleep(ten_millis);
 
