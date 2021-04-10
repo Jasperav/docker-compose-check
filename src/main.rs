@@ -18,11 +18,8 @@ async fn main() {
     println!("Result: {:#?}", result);
 
     let uri = "127.0.0.1:9042";
-
     let session = SessionBuilder::new().known_node(uri).build().await.unwrap();
+    let result = session.query("CREATE KEYSPACE ks WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 2};", &[]).await.unwrap();
 
-    session.query("
-        CREATE KEYSPACE ks
-        WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 2};
-    ", &[]).await.unwrap();
+    println!("Query result: {:#?}", result);
 }
