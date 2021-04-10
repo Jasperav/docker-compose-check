@@ -1,0 +1,1 @@
+CREATE KEYSPACE ks WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 2};
