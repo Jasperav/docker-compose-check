@@ -22,4 +22,9 @@ async fn main() {
     let result = session.query("CREATE KEYSPACE ks WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 2};", &[]).await.unwrap();
 
     println!("Query result: {:#?}", result);
+
+    let result = Command::new("docker")
+        .args(&["exec", "somescylla", "nodetool", "status", "ks"])
+        .status()
+        .unwrap();
 }
